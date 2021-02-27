@@ -1,4 +1,23 @@
 .App {
   font-family: sans-serif;
+  
+}
+
+.heading {
+  color: rgb(84, 84, 192);
+  font-size: 50px;
   text-align: center;
 }
+
+.form{
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+}
+
+  input {
+  height: 30px;
+  width: 50%;
+  
+} 
+
