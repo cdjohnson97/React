@@ -1,0 +1,9 @@
+
+.todo li {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    text-decoration: underline;
+    text-decoration-color: red;    
+}

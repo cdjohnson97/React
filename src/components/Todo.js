@@ -1,9 +1,11 @@
 import React from "react";
+import './Todo.css'
 
-const Todo = (props) => {
+const Todo = ({ todo }) => {
+    
     return (
         <div className="todo">
-            <li>{props.todo}</li>
+            <li>{todo}</li>
         </div>
     )
 };

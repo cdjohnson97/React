@@ -1,44 +1,81 @@
 import React, { useState } from "react";
 import "./styles.css";
-import Todo from './components/Todo'
+import Todo from  "./components/Todo.js";
+import Input from  "./components/Input.js";
+
 
 export default function App() {
-  const [todos, setTodos] = useState([]);
 
-  const [input, setInput] = useState('');
+  const [people, setPeople] = useState([]);
+
+  const [input, setInput ] = useState('');
 
 
-  const handleChange = (e) => {
-
-    let currentInput = e.target.value;
-
-    setInput(currentInput)
-
-  }
-
-  const addTodo = (e) => {
+  const addItems = (e) => {
 
     e.preventDefault();
 
-    setTodos([...todos, input])
+    if(input) {
 
-    console.log(input)
+      setPeople([
 
-    setInput('')    
+      ...people,
+      {
+      name: input,
+
+      id: Math.random() * 1000
+      }
+      
+      ])
+
+    setInput('')
+
+    }
+
+    return   
+                                
   }
 
-  return (
-    <div className="App">
-      <h2 className='heading'>ToDo</h2>
-      <div className="form">
-        <input value={input} onChange={handleChange} />
-        <button onClick={addTodo}>+</button>
+  const delItem = id => {
+
+    const newList = people.filter(person => {
+      return person.id !== id
+    })
+
+    setPeople(newList)
+
+  }
+
+  const delAll = () => setPeople([])
+
+  
+  return <>
+  <center>
+  <h2>List of people</h2>
+
+  <Input 
+  setInput={setInput} 
+  input={input}
+  addItems={addItems}
+  /> 
+
+
+  {
+    people.map(({id, name}) => {
+
+      return <div key={id}>
+        <Todo todo={name} />
+        <button onClick={() => delItem(id)}>X</button>
       </div>
-      <ul>
-        {todos.map(todo => (
-          <Todo todo={todo} />
-        ))}
-      </ul>
-    </div>
-  );
-}
+    }
+    )
+  }
+  {
+    people.length ? <button onClick={delAll}>Vider la liste</button> :
+    <p>Votre liste est vide commencer à ajouter des elements</p>
+  }
+  
+  </center>
+  </>
+  
+} 
